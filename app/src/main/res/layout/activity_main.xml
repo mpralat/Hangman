@@ -23,6 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Single Player"
+            android:onClick="startSinglePlayerGame"
             android:id="@+id/button2"
             android:layout_margin="10px"
             android:layout_gravity="center_horizontal" />
