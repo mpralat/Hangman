@@ -22,7 +22,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Single Player"
+            android:text="@string/single_player"
             android:onClick="startSinglePlayerGame"
             android:id="@+id/button2"
             android:layout_margin="10px"
@@ -31,7 +31,8 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Multiplayer"
+            android:text="@string/multiplayer"
+            android:onClick="startMultiplayerGame"
             android:id="@+id/button3"
             android:layout_gravity="center_horizontal"
             android:layout_margin="10px" />
@@ -39,7 +40,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Stats"
+            android:text="@string/stats"
             android:id="@+id/button"
             android:layout_alignStart="@+id/linearLayout"
             android:layout_margin="10px"
@@ -51,7 +52,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Hangman"
+        android:text="@string/title"
         android:id="@+id/textView"
         android:layout_above="@+id/linearLayout"
         android:layout_centerHorizontal="true"

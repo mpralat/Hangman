@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Wisielec</string>
+    <string name="title">Wisielec</string>
+    <string name="title_activity_game">Gra</string>
+    <string name="check_button">Sprawdź!</string>
+    <string name="type_in_letters">Wpisz literę, którą chcesz sprawdzić.</string>
+    <string name="points">POINTS</string>
+    <string name="save_score">Zapisz wynik!</string>
+    <string name="your_name">Twoje imię</string>
+    <string name="single_player">Jeden gracz</string>
+    <string name="multiplayer">Dwóch graczy</string>
+    <string name="stats">Statystyki</string>
+
+    <string name="enter_word">Wpisz słowo</string>
+    <string name="multiplayer_button">Graj!</string>
+</resources>

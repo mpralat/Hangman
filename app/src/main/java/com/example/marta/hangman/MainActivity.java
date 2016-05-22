@@ -16,8 +16,14 @@ public class MainActivity extends AppCompatActivity {
 
     public void startSinglePlayerGame(View v) {
         Intent firstIntent = new Intent(this,GameActivity.class);
-
+        //DatabaseTable.start();
         startActivity(firstIntent);
 
+    }
+
+    public void startMultiplayerGame(View v) {
+        Intent firstIntent = new Intent(this, MultiplayerActivity.class);
+
+        startActivity(firstIntent);
     }
 }
