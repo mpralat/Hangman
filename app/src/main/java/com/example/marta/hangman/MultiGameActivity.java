@@ -1,22 +1,7 @@
 package com.example.marta.hangman;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.InputFilter;
-import android.text.Spanned;
-import android.util.Log;
-import android.view.View;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 
 /**
  * Main GameActivity
@@ -29,7 +14,7 @@ import java.util.Random;
 // TODO: 14.05.16 bluetooth 
 // TODO: 14.05.16 polish version 
 
-public class GameActivity extends Methods  {
+public class MultiGameActivity extends Methods  {
 
 
     @Override
@@ -46,9 +31,9 @@ public class GameActivity extends Methods  {
 
 
         // new thread for loading the world list
-        new Thread(new Runnable() {
+        new Thread(new Runnable(){
             public void run() {
-                setRandomWord();
+                setMultiWord();
             }
         }).start();
 
@@ -57,18 +42,17 @@ public class GameActivity extends Methods  {
     @Override
     public void gameOver(){
 
-        Intent gameOverIntent = new Intent(this,GameOverActivity.class);
-        gameOverIntent.putExtra("POINTS", getScore());
+        Intent gameOverIntent = new Intent(this,MultiplayerActivity.class);
         startActivity(gameOverIntent);
         finish();
-
     }
 
     @Override
     public void nextTurn(){
-        setScore(getScore() + 1);
+        finish();
         clearScreen();
         getAlreadyCheckedLetters().clear();
-        setRandomWord();
+        Intent gameOverIntent = new Intent(this,MultiplayerActivity.class);
+        startActivity(gameOverIntent);
     }
 }

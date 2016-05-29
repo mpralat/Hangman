@@ -28,12 +28,13 @@
             android:text="@string/save_score"
             android:id="@+id/button4"
             android:layout_weight="0.81"
+            android:onClick="saveScore"
             />
 
         <EditText
             android:layout_width="60dp"
             android:layout_height="fill_parent"
-            android:id="@+id/inputLetter"
+            android:id="@+id/yourName"
             android:layout_marginLeft="20dp"
             android:textSize="12dp"
             android:textAlignment="center"

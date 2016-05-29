@@ -26,4 +26,9 @@ public class MainActivity extends AppCompatActivity {
 
         startActivity(firstIntent);
     }
+
+    public void showStats(View v){
+        Intent statsIntent = new Intent(this, ScoresActivity.class);
+        startActivity(statsIntent);
+    }
 }

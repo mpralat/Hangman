@@ -23,5 +23,6 @@
         android:layout_below = "@id/editTextWord"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
-        android:text="@string/multiplayer_button"/>
+        android:text="@string/multiplayer_button"
+        android:onClick="multiGameStart"/>
 </RelativeLayout>

@@ -25,12 +25,11 @@ public class DatabaseTable {
     private static final String  TAG = "Database";
 
     //OUR COLUMNS
-    private static final String COL_INDEX = "INDEX";
-    private static final String COL_WORD = "WORD";
+    private static final String COL_NAME = "NAME";
+    private static final String COL_POINTS = "POINTS";
 
-    private static final String DATABASE_NAME = "DICTIONARY";
-    private static final String ENGLISH_TABLE = "ENGLISH";
-    private static final String POLISH_TABLE = "POLISH";
+    private static final String DATABASE_NAME = "SCORES";
+    private static final String MAIN_TABLE = "MAIN_TABLE";
    // private static final String FTS_VIRTUAL_TABLE = "FTS";
 
     private static final int DATABASE_VERSION = 1;
@@ -46,16 +45,12 @@ public class DatabaseTable {
         private SQLiteDatabase mDatabase;
 
         //creating the tables
-        private static final String ENGLISH_TABLE_CREATE =
-                "CREATE VIRTUAL TABLE " + ENGLISH_TABLE +
+        private static final String STATS_TABLE_CREATE =
+                "CREATE VIRTUAL TABLE " + MAIN_TABLE +
                         "USING fts3 (" +
-                        COL_INDEX + ", " +
-                        COL_WORD  + " )";
-        private static final String POLISH_TABLE_CREATE =
-                "CREATE VIRTUAL TABLE " + POLISH_TABLE +
-                        "USING fts3 (" +
-                        COL_INDEX + ", " +
-                        COL_WORD  + " )";
+                        COL_NAME  + "," +
+                        COL_POINTS + " )";
+
 
         // constructor
         DatabaseOpenHelper(Context context) {
@@ -66,9 +61,7 @@ public class DatabaseTable {
         @Override
         public void onCreate(SQLiteDatabase db) {
             mDatabase = db;
-            mDatabase.execSQL(ENGLISH_TABLE_CREATE);
-            mDatabase.execSQL(POLISH_TABLE_CREATE);
-            loadDictionary();
+            mDatabase.execSQL(STATS_TABLE_CREATE);
         }
 
         @Override
@@ -76,48 +69,18 @@ public class DatabaseTable {
             Log.w(TAG, "Upgrading database from version " +
                     oldVersion + "to version " + newVersion +
                     "which will destroy all of the previous data");
-            db.execSQL("DROP TABLE IF EXISTS " + ENGLISH_TABLE);
-            db.execSQL("DROP TABLE IF EXISTS "  + POLISH_TABLE);
+            db.execSQL("DROP TABLE IF EXISTS " + MAIN_TABLE);
             onCreate(db);
         }
 
-        // Loading words is in a new thread so it doesn't interfere with UI
-        public void loadDictionary() {
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        loadWords();
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
-                }
-            }).start();
-        }
 
-        // loading words from the text file
-        private void loadWords() throws IOException {
-            final Resources resources = mHelperContext.getResources();
-            InputStream inputStream = resources.openRawResource(R.raw.english);
 
-            try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
-                String line;
-                int i = 0;
-                while ((line = reader.readLine()) != null) {
-                    long id = addWord(i++, line);
-                    if (id < 0) {
-                        Log.e(TAG, "unable to add word: " + line);
-                    }
-                }
-            }
-        }
-
-        public long addWord(int index, String word) {
+        public long addScore(String name, int points) {
             ContentValues initialValues = new ContentValues();
-            initialValues.put(COL_INDEX, index);
-            initialValues.put(COL_WORD, word);
+            initialValues.put(COL_NAME, name);
+            initialValues.put(COL_POINTS,points);
 
-            return mDatabase.insert(ENGLISH_TABLE, null, initialValues);
+            return mDatabase.insert(MAIN_TABLE, null, initialValues);
         }
 
     }
